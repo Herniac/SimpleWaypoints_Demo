@@ -23,6 +23,10 @@ AWaypoint::AWaypoint(const FObjectInitializer& ObjectInitializer)
 #endif
 	RootComponent = Mesh;
 
+	PrimaryActorTick.bCanEverTick = false;
+	SetHidden(true);
+	bIsEnabled = true;
+
 #if WITH_EDITOR
 	Arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
 	Arrow->PrimaryComponentTick.bStartWithTickEnabled = false;
@@ -36,10 +40,6 @@ AWaypoint::AWaypoint(const FObjectInitializer& ObjectInitializer)
 	Text->SetupAttachment(GetRootComponent());
 	UpdateDebugText();
 #endif
-
-	PrimaryActorTick.bCanEverTick = false;
-	SetHidden(true);
-	bIsEnabled = true;
 }
 
 void AWaypoint::OccupyWaypoint()
